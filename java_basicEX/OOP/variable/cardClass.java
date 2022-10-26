@@ -1,17 +1,17 @@
-package OOP.variable;
+package practice.java_basicEX.OOP.variable;
 
 public class cardClass {
 
     public static void main(String[] args) {
 
-        System.out.println("Card.width = " + OOP.variable.Card.width);
-        System.out.println("Card.height = " + OOP.variable.Card.height);
+        System.out.println("Card.width = " + Card.width);
+        System.out.println("Card.height = " + Card.height);
 
-        OOP.variable.Card c1 = new OOP.variable.Card();
+        Card c1 = new Card();
         c1.kind ="Heart";
         c1.number = 7;
 
-        OOP.variable.Card c2 = new OOP.variable.Card();
+        Card c2 = new Card();
         c2.kind ="spade";
         c2.number = 4;
 

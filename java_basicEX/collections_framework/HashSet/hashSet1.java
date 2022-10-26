@@ -1,4 +1,4 @@
-package collections_framework.HashSet;
+package practice.java_basicEX.collections_framework.HashSet;
 
 import java.util.HashSet;
 import java.util.Iterator;
