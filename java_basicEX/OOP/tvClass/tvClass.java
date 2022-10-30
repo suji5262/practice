@@ -1,4 +1,4 @@
-package practice.java_basicEX.OOP.tvClass;
+package java_basicEX.OOP.tvClass;
 
 public class tvClass {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package practice.java_basicEX.OOP.variable;
+package java_basicEX.OOP.variable;
 
 public class cardClass {
 
