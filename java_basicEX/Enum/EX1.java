@@ -1,4 +1,3 @@
-/*
 package practice.java_basicEX.Enum;
 
 public class EX1 {
@@ -25,4 +24,4 @@ class Card2 {//     0,   1,      2,        3
     final Value2 value2;
 
 }
-*/
+
