@@ -1,3 +1,4 @@
+/*
 package Enum;
 package practice.java_basicEX.Enum;
 
@@ -51,3 +52,4 @@ public class ex12_6 {
         System.out.println(Direction2.EAST.rotate(-2));
     }
 }
+*/

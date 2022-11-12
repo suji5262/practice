@@ -1,4 +1,5 @@
-package practice.java_basicEX.Enum;
+/*
+package Enum;
 
 public class EX1 {
 }
@@ -25,3 +26,4 @@ class Card2 {//     0,   1,      2,        3
 
 }
 
+*/
