@@ -9,41 +9,39 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-// ì—°, ì›”, ì¼ì„ ì…ë ¥í•˜ë©´ ìš”ì¼ì„ ì•Œë ¤ì£¼ëŠ” í”„ë¡œê·¸ë¨
+// ¿¬, ¿ù, ÀÏÀ» ÀÔ·ÂÇÏ¸é ¿äÀÏÀ» ¾Ë·ÁÁÖ´Â ÇÁ·Î±×·¥
 @Controller
-public class YoilTellerMVC {
+public class YoilTellerMVC { 
 //		http://localhost:8080/ch2/getYoilMVC?year=2022&month=11&day=17
-
+	
 	@RequestMapping("/getYoilMVC")
 //	public void main(HttpServletRequest request, HttpServletResponse response) throws IOException{
 	public String main(int year, int month, int day, Model m) throws IOException{
 //	public void main(int year, int month, int day, Model model) throws IOException{
-		// ë°˜í™˜íƒ€ì…ì„ ì£¼ì§€ ì•Šìœ¼ë©´ mappingëœ ì£¼ì†Œë¡œ! > ë³´í†µì´ë ‡ê²ŒëŠ” ì•ˆì”€
+    // ¹İÈ¯Å¸ÀÔÀ» ÁÖÁö ¾ÊÀ¸¸é mappingµÈ ÁÖ¼Ò·Î! > º¸ÅëÀÌ·¸°Ô´Â ¾È¾¸   
 //	public ModelAndView main(int year, int month, int day, Model model) throws IOException{
 
 //		ModelAndView mv = new ModelAndView();
-//		//1. ìœ íš¨ì„± ê²€ì‚¬
+//		//1. À¯È¿¼º °Ë»ç
 //		if(!isValid(year, month, day))
 //			return "yoilError";
-
-		//2. ìš”ì¼ ê³„ì‚°
-		char yoil = getYoil(year, month, day);
-
-		//3. ê³„ì‚°í•œ ê²°ê³¼ë¥¼ modelì— ì €ì¥
-		m.addAttribute("year", year);
-		m.addAttribute("month", month);
-		m.addAttribute("day", day);
-		m.addAttribute("yoil", yoil);
-
-		//4. ê²°ê³¼ë¥¼ ë³´ì—¬ì¤„ viewë¥¼ ì§€ì •
+		
+		//2. ¿äÀÏ °è»ê
+        char yoil = getYoil(year, month, day); 
+        
+        //3. °è»êÇÑ °á°ú¸¦ model¿¡ ÀúÀå
+        m.addAttribute("year", year);
+        m.addAttribute("month", month);
+        m.addAttribute("day", day);
+        m.addAttribute("yoil", yoil);
+        
+        //4. °á°ú¸¦ º¸¿©ÁÙ view¸¦ ÁöÁ¤
 //        mv.setViewName("yoil");
-//        return mv;
+//        return mv;     
+        return "yoil"; // WEB-INF/views/yoil. jsp
+       
 
-
-		return "yoil"; // WEB-INF/views/yoil. jsp
-
-
-	}
+    }
 
 	private boolean isValid(int year, int month, int day) {
 		// TODO Auto-generated method stub
@@ -52,9 +50,9 @@ public class YoilTellerMVC {
 
 	private char getYoil(int year, int month, int day) {
 		Calendar cal = Calendar.getInstance();
-		cal.set(year, month - 1, day);
+		cal.set(year, month - 1, day); 
 
-		int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK); // 1:ì¼ìš”ì¼, 2:ì›”ìš”ì¼ ...
-		return " ì¼ì›”í™”ìˆ˜ëª©ê¸ˆí† ".charAt(dayOfWeek);
+		int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK); // 1:ÀÏ¿äÀÏ, 2:¿ù¿äÀÏ ...
+		return " ÀÏ¿ùÈ­¼ö¸ñ±İÅä".charAt(dayOfWeek);
 	}
 }

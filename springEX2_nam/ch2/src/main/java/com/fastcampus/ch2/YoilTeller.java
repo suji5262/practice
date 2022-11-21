@@ -12,17 +12,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class YoilTeller { // ì—°, ì›”, ì¼ì„ ì…ë ¥í•˜ë©´ ìš”ì¼ì„ ì•Œë ¤ì£¼ëŠ” í”„ë¡œê·¸ë¨
-    //http://localhost:8080/ch2/getYoil?year=2022&month=11&day=17
+public class YoilTeller { // ¿¬, ¿ù, ÀÏÀ» ÀÔ·ÂÇÏ¸é ¿äÀÏÀ» ¾Ë·ÁÁÖ´Â ÇÁ·Î±×·¥
+	//http://localhost:8080/ch2/getYoil?year=2022&month=11&day=17
 //	public static void main(String[] args) {
-    @RequestMapping("/getYoil")
-    public void main(HttpServletRequest request, HttpServletResponse response) throws IOException{
-        // 1. ì…ë ¥
+	@RequestMapping("/getYoil")
+	public void main(HttpServletRequest request, HttpServletResponse response) throws IOException{
+        // 1. ÀÔ·Â
 //        String year = args[0];
 //        String month = args[1];
 //        String day = args[2];
-
-        String year = request.getParameter("year");
+        
+		String year = request.getParameter("year");
         String month = request.getParameter("month");
         String day = request.getParameter("day");
 
@@ -30,30 +30,30 @@ public class YoilTeller { // ì—°, ì›”, ì¼ì„ ì…ë ¥í•˜ë©´ ìš”ì¼ì„ ì•Œë ¤ì£¼ëŠ
         int mm = Integer.parseInt(month);
         int dd = Integer.parseInt(day);
 
-        // 2. ì²˜ë¦¬
+        // 2. Ã³¸®
         Calendar cal = Calendar.getInstance();
-        cal.set(yyyy, mm - 1, dd); // ë‚ ì§œ ê³„ì‚°
+        cal.set(yyyy, mm - 1, dd); // ³¯Â¥ °è»ê
 
-        int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK); // 1:ì¼ìš”ì¼, 2:ì›”ìš”ì¼ ...
-        char yoil = " ì¼ì›”í™”ìˆ˜ëª©ê¸ˆí† ".charAt(dayOfWeek); // ìš”ì¼ì„ ì•Œì•„ë‚¼ìˆ˜ ìˆìŒ
+        int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK); // 1:ÀÏ¿äÀÏ, 2:¿ù¿äÀÏ ...
+        char yoil = " ÀÏ¿ùÈ­¼ö¸ñ±İÅä".charAt(dayOfWeek); // ¿äÀÏÀ» ¾Ë¾Æ³¾¼ö ÀÖÀ½
 
-        // 3. ì¶œë ¥
-//        System.out.println(year + "ë…„ " + month + "ì›” " + day + "ì¼ì€ ");
-//        System.out.println(yoil + "ìš”ì¼ì…ë‹ˆë‹¤.");
-
-        response.setContentType("text/html");    // ì‘ë‹µì˜ í˜•ì‹ì„ htmlë¡œ ì§€ì •
-        response.setCharacterEncoding("utf-8");  // ì‘ë‹µì˜ ì¸ì½”ë”©ì„ utf-8ë¡œ ì§€ì • > í•œê¸€ì´ ê¹¨ì§€ëŠ”ê±¸ ë°©ì§€
-        PrintWriter out = response.getWriter();  // ë¸Œë¼ìš°ì €ë¡œì˜ ì¶œë ¥ ìŠ¤íŠ¸ë¦¼(out)ì„ ì–»ëŠ”ë‹¤.
-        // responseê°ì²´ì—ì„œ ë¸Œë¼ìš°ì ¸ë¡œì˜ ì¶œë ¥ ìŠ¤íŠ¸ë¦¼ì„ ì–»ëŠ”ë‹¤
-        out.println(year + "ë…„ " + month + "ì›” " + day + "ì¼ì€ ");
-        out.println(yoil + "ìš”ì¼ì…ë‹ˆë‹¤.");
-
+        // 3. Ãâ·Â
+//        System.out.println(year + "³â " + month + "¿ù " + day + "ÀÏÀº ");
+//        System.out.println(yoil + "¿äÀÏÀÔ´Ï´Ù.");
+        
+        response.setContentType("text/html");    // ÀÀ´äÀÇ Çü½ÄÀ» html·Î ÁöÁ¤
+        response.setCharacterEncoding("utf-8");  // ÀÀ´äÀÇ ÀÎÄÚµùÀ» utf-8·Î ÁöÁ¤ > ÇÑ±ÛÀÌ ±úÁö´Â°É ¹æÁö
+        PrintWriter out = response.getWriter();  // ºê¶ó¿ìÀú·ÎÀÇ Ãâ·Â ½ºÆ®¸²(out)À» ¾ò´Â´Ù.
+        // response°´Ã¼¿¡¼­ ºê¶ó¿ìÁ®·ÎÀÇ Ãâ·Â ½ºÆ®¸²À» ¾ò´Â´Ù
+        out.println(year + "³â " + month + "¿ù " + day + "ÀÏÀº ");
+        out.println(yoil + "¿äÀÏÀÔ´Ï´Ù.");
+      
 //        out.println("<html>");
 //        out.println("<head>");
 //        out.println("</head>");
 //        out.println("<body>");
-//        out.println(year + "ë…„ " + month + "ì›” " + day + "ì¼ì€ ");
-//        out.println(yoil + "ìš”ì¼ì…ë‹ˆë‹¤.");
+//        out.println(year + "³â " + month + "¿ù " + day + "ÀÏÀº ");
+//        out.println(yoil + "¿äÀÏÀÔ´Ï´Ù.");
 //        out.println("</body>");
 //        out.println("</html>");
 //        out.close();

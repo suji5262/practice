@@ -1,4 +1,4 @@
-package practice.springEX2_nam.ch2.src.main.java.com.fastcampus.ch2;
+package com.fastcampus.ch2;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,47 +9,52 @@ import java.util.Set;
 
 class ModelController {
 	public String main(HashMap map) {
+		// ÀÛ¾÷ °á°ú¸¦ map¿¡ ÀúÀå
 		map.put("id", "asdf");
 		map.put("pwd", "1111");
-
-		return "txtView2"; //ë·°ì´ë¦„ ë°˜í™˜
+		
+		return "txtView1"; //ºäÀÌ¸§ ¹İÈ¯
+//		return "txtView2"; // ºä°¡ ¿©·¯°³ ÀÖÀ» ¶§, ºä ÀÌ¸§À» ´Ù¸£°Ô ¹İÈ¯ÇÏ¸é ±× ºä¿¡ ¸Â°Ô °ªµéÀ» Ã¤¿ö °á°ú¸¦ º¸¿©ÁÜ
 	}
 }
 
 public class MethodCall {
 	public static void main(String[] args) throws Exception{
 		HashMap map = new HashMap();
-		System.out.println("before:"+map);
+		System.out.println("before:"+map); // mapÀ» Ã³À½ »ı¼ºÇÒ ¶§ ºñ¾îÀÖÀ½
 
 		ModelController mc = new ModelController();
-		String viewName = mc.main(map);
-
+		String viewName = mc.main(map); // ÀÛ¾÷°á°ú¸¦ render ³Ñ±è
+		
 		System.out.println("after :"+map);
-
-		render(map, viewName);
+		
+		render(map, viewName); // (data, txtView2) - data¸¦ °¡Áö°í view´Â º¸¿©ÁÖ´Â °Í
 	}
-
+	
 	static void render(HashMap map, String viewName) throws IOException {
 		String result = "";
-
-		// 1. ë·°ì˜ ë‚´ìš©ì„ í•œì¤„ì”© ì½ì–´ì„œ í•˜ë‚˜ì˜ ë¬¸ìì—´ë¡œ ë§Œë“ ë‹¤.
+		
+		// 1. ºäÀÇ ³»¿ëÀ» ÇÑÁÙ¾¿ ÀĞ¾î¼­ ÇÏ³ªÀÇ ¹®ÀÚ¿­·Î ¸¸µç´Ù.
 		Scanner sc = new Scanner(new File(viewName+".txt"));
-
+		
 		while(sc.hasNextLine())
 			result += sc.nextLine()+ System.lineSeparator();
-
-		// 2. mapì— ë‹´ê¸´ keyë¥¼ í•˜ë‚˜ì”© ì½ì–´ì„œ templateì˜ ${key}ë¥¼ valueë°”ê¾¼ë‹¤.
+		
+		// 2. map¿¡ ´ã±ä key¸¦ ÇÏ³ª¾¿ ÀĞ¾î¼­ templateÀÇ ${key}¸¦ value¹Ù²Û´Ù.
 		Iterator it = map.keySet().iterator();
-
+		
 		while(it.hasNext()) {
 			String key = (String)it.next();
 
-			// 3. replace()ë¡œ keyë¥¼ value ì¹˜í™˜í•œë‹¤.
+			// 3. replace()·Î key¸¦ value Ä¡È¯ÇÑ´Ù.
 			result = result.replace("${"+key+"}", (String)map.get(key));
 		}
-
-		// 4.ë Œë”ë§ ê²°ê³¼ë¥¼ ì¶œë ¥í•œë‹¤.
+		
+		// 4.·»´õ¸µ °á°ú¸¦ Ãâ·ÂÇÑ´Ù.
 		System.out.println(result);
+		// response °´Ã¼¸¦ ÀÌ¿ëÇØ Å¬¶óÀÌ¾ğÆ®¿¡ Ãâ·ÂÇÒ ¼öµµ ÀÖÀ½
 	}
 }
+
+// ÄÁÆ®·Ñ·¯ Á÷Á¢ »ı¼ºÇØ ¸Ş¼­µå È£Ãâ
 

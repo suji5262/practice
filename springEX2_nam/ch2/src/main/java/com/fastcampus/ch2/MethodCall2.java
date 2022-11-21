@@ -12,53 +12,56 @@ import org.springframework.validation.support.BindingAwareModelMap;
 
 public class MethodCall2 {
 	public static void main(String[] args) throws Exception{
-
-		//1. YoilTellerMVC ì˜ ê°ì²´ë¥¼ ìƒì„±
+		
+		//1. YoilTellerMVC ÀÇ °´Ã¼¸¦ »ı¼º
 		Class clazz = Class.forName("com.fastcampus.ch2.YoilTellerMVC");
 		Object obj = clazz.newInstance();
-
-		//2. main ë©”ì„œë“œì˜ ì •ë³´ë¥¼ ê°€ì ¸ì˜¨ë‹¤
-		Method main = clazz.getDeclaredMethod("main", int.class, int.class, int.class, Model.class);
-
-		//3. madelì„ ìƒì„±
-		Model model = new BindingAwareModelMap(); // ëª¨ë¸ì˜ êµ¬í˜„ì²´ > ì¸í„°í˜ì´ìŠ¤ë¼ ê°ì²´ìƒì„± ë¶ˆê°€ëŠ¥
+		
+		//2. main ¸Ş¼­µåÀÇ Á¤º¸¸¦ °¡Á®¿Â´Ù
+		Method main = clazz.getDeclaredMethod("main", int.class, int.class, int.class, Model.class); // ¿À¹ö·Îµù µÉ ¼ö ÀÖÀ¸´Ï ´Ù Àû¾î¾ßÇÔ
+		
+		//3. madelÀ» »ı¼º
+		Model model = new BindingAwareModelMap(); // ¸ğµ¨ÀÇ ±¸ÇöÃ¼ > ÀÎÅÍÆäÀÌ½º¶ó °´Ã¼»ı¼º ºÒ°¡´É
 		System.out.println("[before] model="+model);
-
-		//4. main ë©”ì„œë“œë¥¼ í˜¸ì¶œ
-		// String viewName = obj.main(2021, 10, 1, model); // ì•„ë˜ ì¤„ê³¼ ë™ì¼
-		String viewName = (String)main.invoke(obj, new Object[] { 2021, 10, 1, model }); // reflection APIë¥¼ í˜¸ì¶œ
-		System.out.println("viewName="+viewName);
-
-		// Modelì˜ ë‚´ìš©ì„ ì¶œë ¥
+		
+		//4. main ¸Ş¼­µå¸¦ È£Ãâ - invoke ¸Ş¼­µå¸¦ »ç¿ë
+		// String viewName = obj.main(2021, 10, 1, model); // ¾Æ·¡ ÁÙ°ú µ¿ÀÏ(Reflection API¸¦ È£Ãâ¾ÈÇÒ ¶§)
+		String viewName = (String)main.invoke(obj, new Object[] { 2021, 10, 1, model }); // reflection API¸¦ È£Ãâ	
+		// obj °´Ã¼¿¡ ´ëÇÑ main ¸Ş¼­µå È£Ãâ/ obj ¹è¿­Àº(°¹¼ö°¡ ´Ş¶óÁú ¼ö ÀÖÀ½) = ¸Å°³º¯¼ö
+		System.out.println("viewName="+viewName);	
+		
+		// ModelÀÇ ³»¿ëÀ» Ãâ·Â 
 		System.out.println("[after] model="+model);
-
-		// í…ìŠ¤íŠ¸ íŒŒì¼ì„ ì´ìš©í•œ rendering
-		render(model, viewName);
+				
+		// ÅØ½ºÆ® ÆÄÀÏÀ» ÀÌ¿ëÇÑ rendering
+		render(model, viewName);			
 	} // main
-
+	
 	static void render(Model model, String viewName) throws IOException {
 		String result = "";
-
-		// 1. ë·°ì˜ ë‚´ìš©ì„ í•œì¤„ì”© ì½ì–´ì„œ í•˜ë‚˜ì˜ ë¬¸ìì—´ë¡œ ë§Œë“ ë‹¤.
+		
+		// 1. ºäÀÇ ³»¿ëÀ» ÇÑÁÙ¾¿ ÀĞ¾î¼­ ÇÏ³ªÀÇ ¹®ÀÚ¿­·Î ¸¸µç´Ù.
 		Scanner sc = new Scanner(new File("src/main/webapp/WEB-INF/views/"+viewName+".jsp"), "utf-8");
-
+		
 		while(sc.hasNextLine())
 			result += sc.nextLine()+ System.lineSeparator();
-
-		// 2. modelì„ mapìœ¼ë¡œ ë³€í™˜
+		
+		// 2. modelÀ» mapÀ¸·Î º¯È¯ 
 		Map map = model.asMap();
-
-		// 3.keyë¥¼ í•˜ë‚˜ì”© ì½ì–´ì„œ templateì˜ ${key}ë¥¼ valueë°”ê¾¼ë‹¤.
+		
+		// 3.key¸¦ ÇÏ³ª¾¿ ÀĞ¾î¼­ templateÀÇ ${key}¸¦ value¹Ù²Û´Ù.
 		Iterator it = map.keySet().iterator();
-
+		
 		while(it.hasNext()) {
 			String key = (String)it.next();
 
-			// 4. replace()ë¡œ keyë¥¼ value ì¹˜í™˜í•œë‹¤.
+			// 4. replace()·Î key¸¦ value Ä¡È¯ÇÑ´Ù.
 			result = result.replace("${"+key+"}", ""+map.get(key));
 		}
-
-		// 5.ë Œë”ë§ ê²°ê³¼ë¥¼ ì¶œë ¥í•œë‹¤.
+		
+		// 5.·»´õ¸µ °á°ú¸¦ Ãâ·ÂÇÑ´Ù.
 		System.out.println(result);
 	}
 }
+
+// Reflection API ÀÌ¿ëÇØ ÄÁÆ®·Ñ·² »ı¼º ¡æ ¸Ş¼­µå È£Ãâ

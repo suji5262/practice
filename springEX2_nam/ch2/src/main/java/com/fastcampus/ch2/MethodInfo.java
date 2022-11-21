@@ -7,30 +7,30 @@ import java.util.StringJoiner;
 public class MethodInfo {
 	public static void main(String[] args) throws Exception{
 
-		//1. YoilTellerí´ë˜ìŠ¤ì˜ ê°ì²´ë¥¼ ìƒì„±
+		//1. YoilTellerÅ¬·¡½ºÀÇ °´Ã¼¸¦ »ı¼º
 		Class clazz = Class.forName("com.fastcampus.ch2.YoilTellerMVC");
 		Object obj = clazz.newInstance();
-
-		//2. ëª¨ë“  ë©”ì„œë“œ ì •ë³´ë¥¼ ê°€ì ¸ì™€ì„œ ë°°ì—´ì— ì €ì¥
+		
+		//2. ¸ğµç ¸Ş¼­µå Á¤º¸¸¦ °¡Á®¿Í¼­ ¹è¿­¿¡ ÀúÀå
 		Method[] methodArr = clazz.getDeclaredMethods();
-
+		
 		for(Method m : methodArr) {
-			String name = m.getName(); // ë©”ì„œë“œì˜ ì´ë¦„
-			Parameter[] paramArr = m.getParameters(); // ë§¤ê°œë³€ìˆ˜ ëª©ë¡
-			// javac > -parameters ë§¤ê°œë³€ìˆ˜ ì´ë¦„ - ì €ì¥ì˜µì…˜
+			String name = m.getName(); // ¸Ş¼­µåÀÇ ÀÌ¸§
+			Parameter[] paramArr = m.getParameters(); // ¸Å°³º¯¼ö ¸ñ·Ï
+			// javac > -parameters ¸Å°³º¯¼ö ÀÌ¸§ - ÀúÀå¿É¼Ç
 //			Class[] paramTypeArr = m.getParameterTypes();
-			Class returnType = m.getReturnType(); // ë°˜í™˜ íƒ€ì…
-
-			StringJoiner paramList = new StringJoiner(", ", "(", ")");// êµ¬ë¶„ì, ì ‘ë‘ì‚¬, ì ‘ë¯¸ì‚¬
+			Class returnType = m.getReturnType(); // ¹İÈ¯ Å¸ÀÔ
+			
+			StringJoiner paramList = new StringJoiner(", ", "(", ")");// ±¸ºĞÀÚ, Á¢µÎ»ç, Á¢¹Ì»ç
 			// (-,-)
-
+			
 			for(Parameter param : paramArr) {
 				String paramName = param.getName();
 				Class  paramType = param.getType();
-
+				
 				paramList.add(paramType.getName() + " " + paramName);
 			}
-
+			
 			System.out.printf("%s %s%s%n", returnType.getName(), name, paramList);
 		}
 	} // main

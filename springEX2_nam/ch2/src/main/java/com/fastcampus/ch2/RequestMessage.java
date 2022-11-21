@@ -11,17 +11,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class RequestMessage {
 	@RequestMapping("/requestMessage")
 	public void main(HttpServletRequest request) throws Exception {
-
+		
 		// 1. request line
-		String requestLine = request.getMethod();       // GET ÎòêÎäî POST
+		String requestLine = request.getMethod();       // GET ∂«¥¬ POST
 		requestLine += " " + request.getRequestURI();   // /ch2/requestMessage
-
+		
 		String queryString = request.getQueryString();  // year=2021&month=10&day=1
-		requestLine += queryString == null ? "" : "?"+queryString;
+		requestLine += queryString == null ? "" : "?"+queryString;  
 		requestLine += " " + request.getProtocol();     // HTTP/1.1
-		System.out.println(requestLine);
+		System.out.println(requestLine);		
 
-
+		
 		// 2. request headers
 		Enumeration<String> e = request.getHeaderNames();
 
@@ -29,17 +29,17 @@ public class RequestMessage {
 			String name = e.nextElement();
 			System.out.println(name + ":" + request.getHeader(name));
 		}
-
-		// 3. request body - POSTÏùº ÎïåÎßå Ìï¥Îãπ, GETÏùÄ bodyÍ∞Ä ÏóÜÏùå(CONTENT_LENGTH=0)
+		
+		// 3. request body - POST¿œ ∂ß∏∏ «ÿ¥Á, GET¿∫ body∞° æ¯¿Ω(CONTENT_LENGTH=0)
 		final int CONTENT_LENGTH = request.getContentLength();
 //		System.out.println("content length="+CONTENT_LENGTH);
-
-		if(CONTENT_LENGTH > 0) { // bodyÍ∞Ä ÏûàÏùÑÎïå
+		
+		if(CONTENT_LENGTH > 0) { // body∞° ¿÷¿ª∂ß 
 			byte[] content = new byte[CONTENT_LENGTH];
 
 			InputStream in = request.getInputStream();
 			in.read(content, 0, CONTENT_LENGTH);
-
+			
 			System.out.println(); // empty line
 			System.out.println(new String(content, "utf-8")); // year=2021&month=10&day=1
 		}  // if
