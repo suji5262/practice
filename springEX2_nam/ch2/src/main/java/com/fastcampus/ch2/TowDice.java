@@ -1,4 +1,4 @@
-package com.fastcampus.ch2;
+package practice.springEX2_nam.ch2.src.main.java.com.fastcampus.ch2;
 
 import java.io.IOException;
 import java.io.PrintWriter;
