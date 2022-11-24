@@ -9,6 +9,7 @@ import java.util.stream.IntStream;
 
 public enum TodoService {
     INSTANCE;
+    // 객체를 하나만 만들 수 있음
 
     public void register(TodoDTO todoDTO) {
         System.out.println("DEBUG.........." + todoDTO);
@@ -18,7 +19,6 @@ public enum TodoService {
 
         List<TodoDTO> todoDTOS = IntStream.range(0, 10).mapToObj(i -> {
             TodoDTO dto = new TodoDTO();
-
             dto.setTno((long)i);
             dto.setTitle("Todo.." + i);
             dto.setDueDate(LocalDate.now());
@@ -27,5 +27,15 @@ public enum TodoService {
         }).collect(Collectors.toList());
 
         return todoDTOS;
+    }
+
+    public TodoDTO get(Long tno) {
+        TodoDTO dto = new TodoDTO();
+        dto.setTno(tno);
+        dto.setTitle("Sample Todo");
+        dto.setDueDate(LocalDate.now());
+        dto.setFinished(true);
+
+        return dto;
     }
 }
