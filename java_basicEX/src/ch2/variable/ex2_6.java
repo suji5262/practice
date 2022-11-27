@@ -9,8 +9,8 @@ public class ex2_6 {
 
         System.out.println(x);
         System.out.println(pi);
-        System.out.println(ch);
         System.out.println(str);
+        System.out.println(ch);
 
     }
 }
