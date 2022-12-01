@@ -1,27 +1,27 @@
-package practice.springEX2_nam.ch2.src.main.java.com.fastcampus.ch2;
+package com.fastcampus.ch2;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-//1. ¿ø°Ý È£Ãâ°¡´ÉÇÑ ÇÁ·Î±×·¥À¸·Î µî·Ï
+//1. ï¿½ï¿½ï¿½ï¿½ È£ï¿½â°¡ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î±×·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 @Controller
 public class Hello {
-	int iv = 10; // ÀÎ½ºÅÏ½º º¯¼ö
-	static int cv = 20; // static º¯¼ö
+	int iv = 10; // ï¿½Î½ï¿½ï¿½Ï½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	static int cv = 20; // static ï¿½ï¿½ï¿½ï¿½
 	
-	//2. URL°ú ¸Þ¼­µå¸¦ ¿¬°á
+	//2. URLï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½å¸¦ ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping("/hello")
-	private void main() { // ÀÎ½ºÅÏ½º ¸Þ¼­µå - iv, cv¸¦ µÑ´Ù »ç¿ë°¡´É
-		System.out.println(" Hello - privata "); // ÅèÄ¹ ÄÜ¼Ö¿¡ Ãâ·ÂÇÔ
+	private void main() { // ï¿½Î½ï¿½ï¿½Ï½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½ - iv, cvï¿½ï¿½ ï¿½Ñ´ï¿½ ï¿½ï¿½ë°¡ï¿½ï¿½
+		System.out.println(" Hello - privata "); // ï¿½ï¿½Ä¹ ï¿½Ü¼Ö¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
 //		System.out.println(iv); //ok
 		System.out.println(cv); //ok 
 	}
 	
-	public static void main2() {// static ¸Þ¼­µå - cv¸¸ »ç¿ë°¡´É
-//		System.out.println(iv); // ¿¡·¯³²
+	public static void main2() {// static ï¿½Þ¼ï¿½ï¿½ï¿½ - cvï¿½ï¿½ ï¿½ï¿½ë°¡ï¿½ï¿½
+//		System.out.println(iv); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		System.out.println(cv); //ok
 
 	}
 
 }
-//System.out.println > ÄÜ¼Ö¿¡ Ãâ·Â
+//System.out.println > ï¿½Ü¼Ö¿ï¿½ ï¿½ï¿½ï¿½
